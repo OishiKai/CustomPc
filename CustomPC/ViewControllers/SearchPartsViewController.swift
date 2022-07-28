@@ -59,8 +59,8 @@ class SearchPartsViewController: UIViewController,UITableViewDelegate, UITableVi
 
 extension SearchPartsViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        SVProgressHUD.show()
         guard !(searchBar.text?.isEmpty ?? true) else { return }
+        SVProgressHUD.show()
         searchBar.resignFirstResponder()
         let word = searchBar.text!
         SearchParts.searchPartsWithSearchBar(selectedCategory: selectedCategory, word: word) { parts in
