@@ -10,7 +10,6 @@ import Foundation
 enum CompatibilityStatus : String {
     case compatible = "選択されたパーツの互換性に問題ありません"
     case incompatible = "選択されたパーツの互換性に問題があります"
-    case noSolution = "選択されたパーツは互換性に依存しません"
 }
 
 class ValidateCompatibility {
@@ -37,39 +36,39 @@ class ValidateCompatibility {
         
         // マザーボードが選ばれていない場合
         guard let motherBoard = motherBoard else {
-            return (CompatibilityStatus.noSolution, incompatibleMessage)
+            return (CompatibilityStatus.compatible, nil)
         }
         
         // cpu mother チェック
         if let cpu = cpu {
-            let isCompatibleSocket = validateSocket(cpu: cpu, motherBoard:motherBoard)
-            if (!isCompatibleSocket) {
+            if (!validateSocket(cpu: cpu, motherBoard:motherBoard)) {
+                // ソケット形状が異なる場合
                 incompatibleMessage! += "CPUとマザーボードのソケット形状"
             }
             
-            let isCompatibleTipset = validateTipset(cpu: cpu, motherBoard: motherBoard)
-            if (!isCompatibleTipset) {
+            if (!validateTipset(cpu: cpu, motherBoard: motherBoard)) {
+                // チップセットが対応していない場合
                 incompatibleMessage! += "CPUとマザーボードのチップセット"
             }
         }
         
         // cpuCooler mother
         if let cpuCooler = cpuCooler {
-            let isCompatibleSocket = validateSocket(cpuCooler: cpuCooler, motherBoard: motherBoard)
-            if (!isCompatibleSocket) {
+            if (!validateSocket(cpuCooler: cpuCooler, motherBoard: motherBoard)) {
+                // ソケット形状が異なる場合
                 incompatibleMessage = "CPUクーラーとマザーボードのソケット形状"
             }
         }
         
         // memory mother
         if let memory = memory {
-            let isCompatibleSocet = validateSocket(memory: memory, motherBoard: motherBoard)
-            if (!isCompatibleSocet) {
+            if (!validateSocket(memory: memory, motherBoard: motherBoard)) {
+                // 規格が異なる場合
                 incompatibleMessage = "メモリーとマザーボードの規格"
             }
             
-            let lessThanSlots = MemoryLessThanSlotsCapacity(memory: memory, motherBoard: motherBoard)
-            if (!lessThanSlots) {
+            if (!MemoryLessThanSlotsCapacity(memory: memory, motherBoard: motherBoard)) {
+                // メモリの枚数がスロット数を超えている場合
                 incompatibleMessage = "メモリーの枚数とマザーボードのスロットの数"
             }
         }
