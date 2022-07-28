@@ -12,7 +12,7 @@ class NewCustomViewController: UIViewController,UITableViewDelegate, UITableView
     var cancelButton: UIBarButtonItem!
     var compatibilityMsg:String = ""
     var storedCustom : Custom? = nil
-    private var parts = [category.cpu, category.cpuCooler, category.memory, category.motherBoard, category.graphicsCard, category.ssd, category.hdd, category.pcCase, category.powerUnit, category.caseFan, category.monitor]
+    private var parts = [Category.cpu, Category.cpuCooler, Category.memory, Category.motherBoard, Category.graphicsCard, Category.ssd, Category.hdd, Category.pcCase, Category.powerUnit, Category.caseFan, Category.monitor]
     
     override func viewDidLoad() {
         self.title = "Combination"

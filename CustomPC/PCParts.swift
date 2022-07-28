@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum category: String {
+enum Category: String {
     case cpu = "CPU"
     case cpuCooler = "CPUクーラー"
     case memory = "メモリー"
@@ -77,14 +77,14 @@ enum category: String {
 
 class PcParts {
     
-    let category: category
+    let category: Category
     let maker: String
     let title: String
     let price: String
     let image: URL
     let detailUrl: String
     
-    init(category: category, maker: String, title:String, price:String, image:URL, detail:String) {
+    init(category: Category, maker: String, title:String, price:String, image:URL, detail:String) {
         self.category = category
         self.maker = maker
         self.title = title
@@ -104,7 +104,7 @@ class PcParts {
     
     // PcParts.categoryをCoredataで保存できなかったため、category.rawValueだけ保存して
     // CoreDataから取り出した際にrawValueからcategoryを返す
-    private static func restoreFromRawValue(value: String) -> category {
+    private static func restoreFromRawValue(value: String) -> Category {
         switch (value) {
         case "CPU":
             return .cpu

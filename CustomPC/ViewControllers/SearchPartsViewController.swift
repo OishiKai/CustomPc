@@ -16,7 +16,7 @@ class SearchPartsViewController: UIViewController,UITableViewDelegate, UITableVi
     @IBOutlet weak var searchTable: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     var pcPartsSeq: [PcParts] = []
-    var selectedCategory:category = category.cpu
+    var selectedCategory:Category = Category.cpu
     var selectedParts:[PcParts] = []
     var storedCustom:Custom? = nil
 
