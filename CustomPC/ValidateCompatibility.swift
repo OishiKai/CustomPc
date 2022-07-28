@@ -15,7 +15,7 @@ enum CompatibilityStatus : String {
 
 class ValidateCompatibility {
     public static func isCompatible(pcParts: [PcParts]) -> (CompatibilityStatus, String?) {
-        var compatibilityMessage : String?
+        var incompatibleMessage : String?
         var cpu :PcParts?
         var cpuCooler :PcParts?
         var memory :PcParts?
@@ -37,49 +37,70 @@ class ValidateCompatibility {
         
         // マザーボードが選ばれていない場合
         guard let motherBoard = motherBoard else {
-            return (CompatibilityStatus.noSolution, compatibilityMessage)
+            return (CompatibilityStatus.noSolution, incompatibleMessage)
         }
         
         // cpu mother チェック
         if let cpu = cpu {
-            let isCompatibleSocket = false // ここで判定メソッド
+            let isCompatibleSocket = validateSocket(cpu: cpu, motherBoard:motherBoard)
             if (!isCompatibleSocket) {
-                compatibilityMessage! += "CPUとマザーボードのソケット形状"
+                incompatibleMessage! += "CPUとマザーボードのソケット形状"
             }
             
-            let isCompatibleTipset = false // ここで判定メソッド
+            let isCompatibleTipset = validateTipset(cpu: cpu, motherBoard: motherBoard)
             if (!isCompatibleTipset) {
-                compatibilityMessage! += "CPUとマザーボードのチップセット"
+                incompatibleMessage! += "CPUとマザーボードのチップセット"
             }
         }
         
         // cpuCooler mother
         if let cpuCooler = cpuCooler {
-            let isCompatibleSocket = false // ここで判定メソッド
+            let isCompatibleSocket = validateSocket(cpuCooler: cpuCooler, motherBoard: motherBoard)
             if (!isCompatibleSocket) {
-                compatibilityMessage = "CPUクーラーとマザーボードのソケット形状"
+                incompatibleMessage = "CPUクーラーとマザーボードのソケット形状"
             }
         }
         
         // memory mother
         if let memory = memory {
-            let isCompatibleSocet = false
+            let isCompatibleSocet = validateSocket(memory: memory, motherBoard: motherBoard)
             if (!isCompatibleSocet) {
-                compatibilityMessage = "メモリーとマザーボードの規格"
+                incompatibleMessage = "メモリーとマザーボードの規格"
             }
             
-            let lessThanSlots = false
+            let lessThanSlots = MemoryLessThanSlotsCapacity(memory: memory, motherBoard: motherBoard)
             if (!lessThanSlots) {
-                compatibilityMessage = "メモリーの枚数とマザーボードのスロットの数"
+                incompatibleMessage = "メモリーの枚数とマザーボードのスロットの数"
             }
         }
         
-        if let message = compatibilityMessage {
+        if let message = incompatibleMessage {
             return (CompatibilityStatus.incompatible, message)
         } else {
             return (CompatibilityStatus.compatible, nil)
         }
     }
+    
+    private static func validateSocket(cpu:PcParts, motherBoard:PcParts) -> Bool {
+        return false
+    }
+    
+    private static func validateTipset(cpu:PcParts, motherBoard:PcParts) -> Bool{
+        return false
+    }
+    
+    private static func validateSocket(cpuCooler:PcParts, motherBoard:PcParts) -> Bool {
+        return false
+    }
+    
+    private static func validateSocket(memory:PcParts, motherBoard:PcParts) -> Bool {
+        return false
+    }
+    
+    private static func MemoryLessThanSlotsCapacity(memory:PcParts, motherBoard:PcParts) -> Bool {
+        return false
+    }
 }
+
 
 
