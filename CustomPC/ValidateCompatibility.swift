@@ -12,7 +12,7 @@ class ValidateCompatibility {
     // 互換性に問題がある場合 -> 互換性エラーメッセージ
     // 互換性に問題ない場合   -> nil
     public static func isCompatible(pcParts: [PcParts]) -> String? {
-        var incompatibleMessage : String?
+        var incompatibleMessage = ""
         var cpu :PcParts?
         var cpuCooler :PcParts?
         var memory :PcParts?
@@ -41,12 +41,12 @@ class ValidateCompatibility {
         if let cpu = cpu {
             if (!validateSocket(cpu: cpu, motherBoard:motherBoard)) {
                 // ソケット形状が異なる場合
-                incompatibleMessage! += "CPUとマザーボードのソケット形状"
+                incompatibleMessage += "CPUとマザーボードのソケット形状"
             }
             
             if (!validateTipset(cpu: cpu, motherBoard: motherBoard)) {
                 // チップセットが対応していない場合
-                incompatibleMessage! += "CPUとマザーボードのチップセット"
+                incompatibleMessage += "CPUとマザーボードのチップセット"
             }
         }
         
@@ -54,7 +54,7 @@ class ValidateCompatibility {
         if let cpuCooler = cpuCooler {
             if (!validateSocket(cpuCooler: cpuCooler, motherBoard: motherBoard)) {
                 // ソケット形状が異なる場合
-                incompatibleMessage = "CPUクーラーとマザーボードのソケット形状"
+                incompatibleMessage += "CPUクーラーとマザーボードのソケット形状"
             }
         }
         
@@ -62,23 +62,32 @@ class ValidateCompatibility {
         if let memory = memory {
             if (!validateSocket(memory: memory, motherBoard: motherBoard)) {
                 // 規格が異なる場合
-                incompatibleMessage = "メモリーとマザーボードの規格"
+                incompatibleMessage += "メモリーとマザーボードの規格"
             }
             
             if (!MemoryLessThanSlotsCapacity(memory: memory, motherBoard: motherBoard)) {
                 // メモリの枚数がスロット数を超えている場合
-                incompatibleMessage = "メモリーの枚数とマザーボードのスロットの数"
+                incompatibleMessage += "メモリーの枚数とマザーボードのスロットの数"
             }
         }
         
-        if let message = incompatibleMessage {
-            return message
+        if incompatibleMessage == "" {
+            return incompatibleMessage
         } else {
             return nil
         }
     }
     
     private static func validateSocket(cpu:PcParts, motherBoard:PcParts) -> Bool {
+        // cpuソケット情報格納例) "ソケット形状 LGA1700" -> "LGA1700"
+        guard var cpuSocket = cpu.specs["socket"] else { return false }
+        cpuSocket = cpuSocket.replacingOccurrences(of: "ソケット形状 ", with: "")
+        
+        // マザーボードソケット情報格納例) "CPUソケットLGA1700" -> "LGA1700"
+        guard var motherBoardSocket = motherBoard.specs["socket"] else { return false }
+        motherBoardSocket = motherBoardSocket.replacingOccurrences(of: "CPUソケット", with: "")
+        
+        if cpuSocket == motherBoardSocket { return true }
         
         return false
     }
