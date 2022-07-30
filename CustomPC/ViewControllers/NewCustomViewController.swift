@@ -10,7 +10,7 @@ class NewCustomViewController: UIViewController,UITableViewDelegate, UITableView
     @IBOutlet weak var keepButton: UIButton!
     
     var cancelButton: UIBarButtonItem!
-    var compatibilityMsg:String = ""
+    var compatibilityMsg:String?
     var storedCustom : Custom? = nil
     private var parts = [Category.cpu, Category.cpuCooler, Category.memory, Category.motherBoard, Category.graphicsCard, Category.ssd, Category.hdd, Category.pcCase, Category.powerUnit, Category.caseFan, Category.monitor]
     
@@ -21,15 +21,15 @@ class NewCustomViewController: UIViewController,UITableViewDelegate, UITableView
         cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didTapCancel(_:)))
         self.navigationItem.leftBarButtonItem = cancelButton
         
-        // 互換性メッセージ
-        compatibilityLabel.text = compatibilityMsg
         compatibilityLabel.textColor = .white
-        if compatibilityMsg.contains("問題ありません") {
-            compatibilityLabel.backgroundColor = .systemGreen
-        }else if compatibilityMsg.contains("問題があります") {
+        if let message = compatibilityMsg {
+            compatibilityLabel.text = "選択されたパーツの互換性に問題があります\n" + message
             compatibilityLabel.backgroundColor = .systemRed
-        }else{
-            compatibilityLabel.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1.0)
+        } else {
+            let msg = "選択されたパーツの互換性に問題ありません"
+            self.compatibilityMsg = msg
+            compatibilityLabel.text = msg
+            compatibilityLabel.backgroundColor = .systemGreen
         }
         
         keepButton.backgroundColor = UIColor.systemBlue
@@ -105,7 +105,7 @@ class NewCustomViewController: UIViewController,UITableViewDelegate, UITableView
                         alertTextField.text! = "タイトルなし"
                     }
                     
-                    AccessData.storeCustom(title: alertTextField.text!, price: self.priceLabel.text!, message: self.compatibilityMsg, parts: self.selectedParts)
+                    AccessData.storeCustom(title: alertTextField.text!, price: self.priceLabel.text!, message: self.compatibilityMsg!, parts: self.selectedParts)
                     if let custom = self.storedCustom {
                         AccessData.deleteCustom(custom: custom)
                     }

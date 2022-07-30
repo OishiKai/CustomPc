@@ -66,11 +66,11 @@ class PartsDetailViewController: UIViewController{
                 if parts.category.rawValue == "CPU"{
                     for spec in specs {
                         if (spec.contains("世代第")){
-                            parts.specs.append(spec)
+                            parts.specs.updateValue(spec, forKey: "generation")
                         }
                         
                         if (spec.contains("ソケット形状")){
-                            parts.specs.append(spec)
+                            parts.specs.updateValue(spec, forKey: "socket")
                         }
                     }
                 }
@@ -78,11 +78,11 @@ class PartsDetailViewController: UIViewController{
                 if parts.category.rawValue == "マザーボード" {
                     for spec in specs {
                         if (spec.contains("チップセット")){
-                            parts.specs.append(spec)
+                            parts.specs.updateValue(spec, forKey: "tipset")
                         }
                         
                         if (spec.contains("CPUソケット")){
-                            parts.specs.append(spec)
+                            parts.specs.updateValue(spec, forKey: "socket")
                         }
                     }
                 }
@@ -90,11 +90,11 @@ class PartsDetailViewController: UIViewController{
                 if parts.category.rawValue == "CPUクーラー" {
                     for spec in specs {
                         if (spec.contains("Intel対応ソケット")){
-                            parts.specs.append(spec)
+                            parts.specs.updateValue(spec, forKey: "intelSocket")
                         }
                         
                         if (spec.contains("AMD対応ソケット")){
-                            parts.specs.append(spec)
+                            parts.specs.updateValue(spec, forKey: "amdSocket")
                         }
                     }
                 }
@@ -126,29 +126,11 @@ class PartsDetailViewController: UIViewController{
             selectedParts.append(pcparts)
         }
         
-        var compCpuMother :Bool? = nil
-        if let cpuAndMother = CheckCompatibility.isSelectedCpuMotherBoard(selected: self.selectedParts) {
-            if CheckCompatibility.compatibilityCpuMotherboard(cpu: cpuAndMother[0], motherboard: cpuAndMother[1]){
-                compCpuMother = true
-            }else {
-                compCpuMother = false
-            }
-        }
-        
-        var compCpuCoolerMother :Bool? = nil
-        if let cpuCoolerAndMother = CheckCompatibility.isSelectedCpuCoolerMotherBoard(selected: self.selectedParts) {
-            if CheckCompatibility.compatibilityCpucoolerMotherboard(cpuCooler: cpuCoolerAndMother[0], motherBoard: cpuCoolerAndMother[1]) {
-                compCpuCoolerMother = true
-            }else {
-                compCpuCoolerMother = false
-            }
-        }
-        
         DispatchQueue.main.async {
             let storyboard = UIStoryboard(name: "NewCustomViewController", bundle: nil)
-            let nextVC = storyboard.instantiateViewController(identifier: "NewCustomViewController")as! NewCustomViewController
+            let nextVC = storyboard.instantiateViewController(identifier: "NewCustomViewController") as! NewCustomViewController
             nextVC.selectedParts = self.selectedParts
-            nextVC.compatibilityMsg = CheckCompatibility.compatibilityMessage(cpuMother: compCpuMother, cpuCoolerMother: compCpuCoolerMother)
+            nextVC.compatibilityMsg = ValidateCompatibility.isCompatible(pcParts: self.selectedParts)
             if let custom = self.storedCustom {
                 nextVC.storedCustom = custom
             }

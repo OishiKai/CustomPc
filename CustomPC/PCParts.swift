@@ -100,7 +100,7 @@ class PcParts {
         }
         return 0
     }
-    var specs = [String]()
+    var specs = [String:String]()
     
     // PcParts.categoryをCoredataで保存できなかったため、category.rawValueだけ保存して
     // CoreDataから取り出した際にrawValueからcategoryを返す

@@ -13,11 +13,11 @@ class UpdateLatestPartsInfo {
             if pcParts[index].category == .cpu {
                 for spec in specs {
                     if spec.contains("世代第") {
-                        pcParts[index].specs.append(spec)
+                        pcParts[index].specs.updateValue(spec, forKey: "generation")
                     }
                     
                     if spec.contains("ソケット形状") {
-                        pcParts[index].specs.append(spec)
+                        pcParts[index].specs.updateValue(spec, forKey: "socket")
                     }
                 }
             }
@@ -25,11 +25,11 @@ class UpdateLatestPartsInfo {
             if pcParts[index].category == .cpuCooler {
                 for spec in specs {
                     if spec.contains("Intel対応ソケット") {
-                        pcParts[index].specs.append(spec)
+                        pcParts[index].specs.updateValue(spec, forKey: "intelSocket")
                     }
                     
                     if spec.contains("AMD対応ソケット") {
-                        pcParts[index].specs.append(spec)
+                        pcParts[index].specs.updateValue(spec, forKey: "amdSocket")
                     }
                 }
             }
@@ -37,11 +37,11 @@ class UpdateLatestPartsInfo {
             if pcParts[index].category == .motherBoard {
                 for spec in specs {
                     if spec.contains("チップセット") {
-                        pcParts[index].specs.append(spec)
+                        pcParts[index].specs.updateValue(spec, forKey: "tipset")
                     }
                     
                     if spec.contains("CPUソケット") {
-                        pcParts[index].specs.append(spec)
+                        pcParts[index].specs.updateValue(spec, forKey: "socket")
                     }
                 }
             }

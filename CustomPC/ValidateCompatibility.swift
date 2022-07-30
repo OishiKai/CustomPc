@@ -7,13 +7,11 @@
 
 import Foundation
 
-enum CompatibilityStatus : String {
-    case compatible = "選択されたパーツの互換性に問題ありません"
-    case incompatible = "選択されたパーツの互換性に問題があります"
-}
-
 class ValidateCompatibility {
-    public static func isCompatible(pcParts: [PcParts]) -> (CompatibilityStatus, String?) {
+    // 互換性判定メソッド
+    // 互換性に問題がある場合 -> 互換性エラーメッセージ
+    // 互換性に問題ない場合   -> nil
+    public static func isCompatible(pcParts: [PcParts]) -> String? {
         var incompatibleMessage : String?
         var cpu :PcParts?
         var cpuCooler :PcParts?
@@ -21,7 +19,7 @@ class ValidateCompatibility {
         var motherBoard :PcParts?
         
         for parts in pcParts {
-            switch (parts.category){
+            switch (parts.category) {
             case .cpu:
                 cpu = parts
             case .cpuCooler:
@@ -36,7 +34,7 @@ class ValidateCompatibility {
         
         // マザーボードが選ばれていない場合
         guard let motherBoard = motherBoard else {
-            return (CompatibilityStatus.compatible, nil)
+            return nil
         }
         
         // cpu mother チェック
@@ -74,13 +72,14 @@ class ValidateCompatibility {
         }
         
         if let message = incompatibleMessage {
-            return (CompatibilityStatus.incompatible, message)
+            return message
         } else {
-            return (CompatibilityStatus.compatible, nil)
+            return nil
         }
     }
     
     private static func validateSocket(cpu:PcParts, motherBoard:PcParts) -> Bool {
+        
         return false
     }
     
