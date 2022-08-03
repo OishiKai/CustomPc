@@ -72,14 +72,14 @@ class ValidateCompatibility {
         }
         
         if incompatibleMessage == "" {
-            return incompatibleMessage
-        } else {
             return nil
+        } else {
+            return incompatibleMessage
         }
     }
     
     private static func validateSocket(cpu:PcParts, motherBoard:PcParts) -> Bool {
-        // cpuソケット情報格納例) "ソケット形状 LGA1700" -> "LGA1700"
+        // CPUソケット情報格納例) "ソケット形状 LGA1700" -> "LGA1700"
         guard var cpuSocket = cpu.specs["socket"] else { return false }
         cpuSocket = cpuSocket.replacingOccurrences(of: "ソケット形状 ", with: "")
         
@@ -97,7 +97,65 @@ class ValidateCompatibility {
     }
     
     private static func validateSocket(cpuCooler:PcParts, motherBoard:PcParts) -> Bool {
-        return false
+        var compatible = false
+        // マザーボードの対応CPUが INTEL or AMD のどちらかをチップセットから判断
+        guard let tipset = motherBoard.specs["tipset"] else { return false }
+        if tipset.contains("INTEL") {
+            
+            // CPUクーラーINTELソケット情報格納例) "Intel対応ソケットLGA 2066/2011-3LGA 1700/1200" -> ["2066", "2011-3","1700", "1200"]
+            guard var cpuCoolerSocket = cpuCooler.specs["intelSocket"] else { return false }
+            cpuCoolerSocket = cpuCoolerSocket.replacingOccurrences(of: "Intel対応ソケットLGA ", with: "").replacingOccurrences(of: "LGA ", with: "/")
+            let cpuCoolerSocketList = cpuCoolerSocket.split(separator: "/")
+            
+            // マザーボードソケット情報格納例) "CPUソケットLGA1700" -> "LGA1700"
+            guard var motherBoardSocket = motherBoard.specs["socket"] else { return false }
+            motherBoardSocket = motherBoardSocket.replacingOccurrences(of: "CPUソケット", with: "")
+            
+            // ソケットを比較
+            for so in cpuCoolerSocketList {
+                if motherBoardSocket == "LGA" + so {
+                    compatible = true
+                }
+            }
+            
+        } else if tipset.contains("AMD") {
+            // CPUクーラーAMDソケット情報格納例)
+            guard var cpuCoolerSocket = cpuCooler.specs["amdSocket"] else { return false }
+            cpuCoolerSocket = cpuCoolerSocket.replacingOccurrences(of: "AMD対応ソケット", with: "")
+            let cpuCoolerSocketList = cpuCoolerSocket.split(separator: "/")
+            
+            // CPUクーラーページのAMDソケット情報の改行文字が省略され、2種のソケットがつながってしまう場合の対応
+            // "TR4"<br>"AM4/AM3" -> ["TR4AM4", "AM3"]  --  TR4 と AM4 がつながってしまっている
+            var splitedSocketList:[String] = []
+            for ccs in cpuCoolerSocketList {
+                var baseStr = ""
+                var splitStr = ""
+                for (index, char) in ccs.enumerated() {
+                    baseStr += String(char)
+                    
+                    if Int(String(char)) != nil && index != (ccs.utf8.count - 1){
+                        splitStr = baseStr
+                        baseStr = ""
+                    }
+                }
+                
+                if splitStr != "" {
+                    splitedSocketList.append(splitStr)
+                }
+                splitedSocketList.append(baseStr)
+            }
+            
+            guard var motherBoardSocket = motherBoard.specs["socket"] else { return false }
+            motherBoardSocket = motherBoardSocket.replacingOccurrences(of: "CPUソケットSocket", with: "")
+            
+            for socket in splitedSocketList {
+                if socket == motherBoardSocket {
+                    compatible = true
+                }
+            }
+        }
+        
+        return compatible
     }
     
     private static func validateSocket(memory:PcParts, motherBoard:PcParts) -> Bool {
