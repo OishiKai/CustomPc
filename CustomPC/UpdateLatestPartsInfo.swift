@@ -34,6 +34,22 @@ class UpdateLatestPartsInfo {
                 }
             }
             
+            if pcParts[index].category == .memory{
+                for spec in specs {
+                    if (spec.contains("枚数")){
+                        pcParts[index].specs.updateValue(spec, forKey: "numbarOfSheets")
+                    }
+                    
+                    if (spec.contains("メモリインターフェイス")){
+                        pcParts[index].specs.updateValue(spec, forKey: "memoryInterface")
+                    }
+                    
+                    if (spec.contains("メモリ規格")){
+                        pcParts[index].specs.updateValue(spec, forKey: "memoryInterface")
+                    }
+                }
+            }
+            
             if pcParts[index].category == .motherBoard {
                 for spec in specs {
                     if spec.contains("チップセット") {

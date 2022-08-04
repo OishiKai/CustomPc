@@ -159,6 +159,7 @@ class ValidateCompatibility {
     }
     
     private static func validateSocket(memory:PcParts, motherBoard:PcParts) -> Bool {
+        
         return false
     }
     

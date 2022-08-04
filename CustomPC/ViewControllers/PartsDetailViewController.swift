@@ -75,18 +75,6 @@ class PartsDetailViewController: UIViewController{
                     }
                 }
                 
-                if parts.category.rawValue == "マザーボード" {
-                    for spec in specs {
-                        if (spec.contains("チップセット")){
-                            parts.specs.updateValue(spec, forKey: "tipset")
-                        }
-                        
-                        if (spec.contains("CPUソケット")){
-                            parts.specs.updateValue(spec, forKey: "socket")
-                        }
-                    }
-                }
-                
                 if parts.category.rawValue == "CPUクーラー" {
                     for spec in specs {
                         if (spec.contains("Intel対応ソケット")){
@@ -95,6 +83,34 @@ class PartsDetailViewController: UIViewController{
                         
                         if (spec.contains("AMD対応ソケット")){
                             parts.specs.updateValue(spec, forKey: "amdSocket")
+                        }
+                    }
+                }
+                
+                if parts.category.rawValue == "メモリー" {
+                    for spec in specs {
+                        if (spec.contains("枚数")){
+                            parts.specs.updateValue(spec, forKey: "numbarOfSheets")
+                        }
+                        
+                        if (spec.contains("メモリインターフェイス")){
+                            parts.specs.updateValue(spec, forKey: "memoryInterface")
+                        }
+                        
+                        if (spec.contains("メモリ規格")){
+                            parts.specs.updateValue(spec, forKey: "memoryInterface")
+                        }
+                    }
+                }
+                
+                if parts.category.rawValue == "マザーボード" {
+                    for spec in specs {
+                        if (spec.contains("チップセット")){
+                            parts.specs.updateValue(spec, forKey: "tipset")
+                        }
+                        
+                        if (spec.contains("CPUソケット")){
+                            parts.specs.updateValue(spec, forKey: "socket")
                         }
                     }
                 }
