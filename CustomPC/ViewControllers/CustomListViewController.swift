@@ -25,6 +25,8 @@ class CustomListViewController: UIViewController ,UITableViewDelegate, UITableVi
         let nib = UINib(nibName: SearchPartsTableViewCell.cellIdentifier, bundle: nil)
         customTable.register(nib, forCellReuseIdentifier: SearchPartsTableViewCell.cellIdentifier)
         customTable.rowHeight = UITableView.automaticDimension
+        
+        ParseDetails.getIntelTipsetCompatibleCPU(tipset: "Z690") { res in }
     }
     
     override func viewDidAppear(_ animated: Bool) {

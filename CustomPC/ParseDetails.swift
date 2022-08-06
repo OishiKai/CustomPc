@@ -77,8 +77,20 @@ class ParseDetails {
         }
     }
     
+    static func getIntelTipsetCompatibleCPU(tipset:String, completionHandler: @escaping ([String]) -> Void) -> Void {
+        let searchURL = "https://www.intel.co.jp/content/www/jp/ja/search.html?ws=recent#q=\(tipset)&sort=relevancy"
+        AF.request(searchURL).responseString (encoding: String.Encoding.utf8) { response in
+            if let html = response.value {
+                if let doc = try? HTML(html: html, encoding: String.Encoding.utf8) {
+                    let searchResults = doc.xpath("//*[@id=\"coveo-result-list2\"]/div/div").count
+                    print(searchResults)
+                }
+            }
+        }
+    }
+    
     static func getPrices(detailUrl : String, completionHandler: @escaping ([String]) -> Void) -> Void{
-        AF.request("https://kakaku.com/item/K0001385125/?lid=pc_ksearch_kakakuitem").responseString (encoding: String.Encoding.shiftJIS){ response in
+        AF.request("https://kakaku.com/item/K0001385125/?lid=pc_ksearch_kakakuitem").responseString (encoding: String.Encoding.shiftJIS) { response in
             if let html = response.value {
                 if let doc = try? HTML(html: html, encoding: String.Encoding.utf8) {
                     let makerXPath = "//*[@id='mainLeft']/table"

@@ -92,7 +92,14 @@ class ValidateCompatibility {
         return false
     }
     
-    private static func validateTipset(cpu:PcParts, motherBoard:PcParts) -> Bool{
+    private static func validateTipset(cpu:PcParts, motherBoard:PcParts) -> Bool {
+        guard let tipset = motherBoard.specs["tipset"] else { return false }
+        
+        if tipset.contains("INTEL") {
+        } else if tipset.contains("AMD") {
+            
+        }
+        
         return false
     }
     
