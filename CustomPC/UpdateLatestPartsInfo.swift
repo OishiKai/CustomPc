@@ -63,6 +63,10 @@ class UpdateLatestPartsInfo {
                     if spec.contains("詳細メモリタイプ") {
                         pcParts[index].specs.updateValue(spec, forKey: "memoryType")
                     }
+                    
+                    if spec.contains("メモリスロット数") {
+                        pcParts[index].specs.updateValue(spec, forKey: "numberOfSlots")
+                    }
                 }
             }
             

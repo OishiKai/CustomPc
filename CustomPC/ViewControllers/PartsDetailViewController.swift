@@ -116,6 +116,10 @@ class PartsDetailViewController: UIViewController{
                         if (spec.contains("詳細メモリタイプ")){
                             parts.specs.updateValue(spec, forKey: "memoryType")
                         }
+                        
+                        if (spec.contains("メモリスロット数")){
+                            parts.specs.updateValue(spec, forKey: "numberOfSlots")
+                        }
                     }
                 }
             }

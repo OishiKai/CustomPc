@@ -128,12 +128,15 @@ class ValidateCompatibility {
             // "TR4"<br>"AM4/AM3" -> ["TR4AM4", "AM3"]  --  TR4 と AM4 がつながってしまっている
             var splitedSocketList:[String] = []
             for ccs in cpuCoolerSocketList {
+                // ソケット情報をひとつづつ検証
                 var baseStr = ""
                 var splitStr = ""
                 for (index, char) in ccs.enumerated() {
+                    // ソケット情報の文字列を1文字づつ検証
                     baseStr += String(char)
                     
                     if Int(String(char)) != nil && index != (ccs.utf8.count - 1){
+                        // ソケット情報の最後尾以外に数字が含まれている場合
                         splitStr = baseStr
                         baseStr = ""
                     }
@@ -159,11 +162,11 @@ class ValidateCompatibility {
     }
     
     private static func validateSocket(memory:PcParts, motherBoard:PcParts) -> Bool {
-        // メモリインターフェイス格納例) "メモリインターフェイスDIMM" -> "DIMM"
+        // メモリインターフェイス 格納例) "メモリインターフェイスDIMM" -> "DIMM"
         guard let memoryInterFace = memory.specs["memoryInterface"]?.replacingOccurrences(of: "メモリインターフェイス", with: "") else { return false }
-        // メモリ規格格納例) "メモリ規格DDR4 SDRAM" -> "DDR4 SDRAM" -> "DDR4"
+        // メモリ規格 格納例) "メモリ規格DDR4 SDRAM" -> "DDR4 SDRAM" -> "DDR4"
         guard let memoryStandard = memory.specs["memoryStandard"]?.replacingOccurrences(of: "メモリ規格", with: "").split(separator: " ")[0] else { return false }
-        // マザーボードメモリソケット格納例) "詳細メモリタイプDIMM DDR4" -> "DIMM DDR5"
+        // マザーボードメモリソケット 格納例) "詳細メモリタイプDIMM DDR4" -> "DIMM DDR5"
         guard let memoryType = motherBoard.specs["memoryType"]?.replacingOccurrences(of: "詳細メモリタイプ", with: "") else { return false }
         
         if memoryType.contains(memoryInterFace) && memoryType.contains(memoryStandard) {
@@ -173,8 +176,16 @@ class ValidateCompatibility {
     }
     
     private static func MemoryLessThanSlotsCapacity(memory:PcParts, motherBoard:PcParts) -> Bool {
-        // メモリ枚数格納例) "枚数1枚" -> 1
-        let numberOfSheets = memory.specs["numbarOfSheets"]?.replacingOccurrences(of: "数", with: "").replacingOccurrences(of: "枚", with: "")
+        // メモリ枚数 格納例) "枚数1枚" -> 1
+        guard let numberOfSheets = memory.specs["numbarOfSheets"]?.replacingOccurrences(of: "数", with: "").replacingOccurrences(of: "枚", with: "") else { return false }
+        // マザーボードのメモリスロット数
+        guard let numberOfSlots = motherBoard.specs["numberOfSlots"]?.replacingOccurrences(of: "メモリスロット数", with: "") else { return false }
+        
+        if let sheets = Int(numberOfSheets) {
+            if let slots = Int(numberOfSlots) {
+                if sheets <= slots { return true }
+            }
+        }
         return false
     }
 }
