@@ -159,11 +159,22 @@ class ValidateCompatibility {
     }
     
     private static func validateSocket(memory:PcParts, motherBoard:PcParts) -> Bool {
+        // メモリインターフェイス格納例) "メモリインターフェイスDIMM" -> "DIMM"
+        guard let memoryInterFace = memory.specs["memoryInterface"]?.replacingOccurrences(of: "メモリインターフェイス", with: "") else { return false }
+        // メモリ規格格納例) "メモリ規格DDR4 SDRAM" -> "DDR4 SDRAM" -> "DDR4"
+        guard let memoryStandard = memory.specs["memoryStandard"]?.replacingOccurrences(of: "メモリ規格", with: "").split(separator: " ")[0] else { return false }
+        // マザーボードメモリソケット格納例) "詳細メモリタイプDIMM DDR4" -> "DIMM DDR5"
+        guard let memoryType = motherBoard.specs["memoryType"]?.replacingOccurrences(of: "詳細メモリタイプ", with: "") else { return false }
         
+        if memoryType.contains(memoryInterFace) && memoryType.contains(memoryStandard) {
+            return true
+        }
         return false
     }
     
     private static func MemoryLessThanSlotsCapacity(memory:PcParts, motherBoard:PcParts) -> Bool {
+        // メモリ枚数格納例) "枚数1枚" -> 1
+        let numberOfSheets = memory.specs["numbarOfSheets"]?.replacingOccurrences(of: "数", with: "").replacingOccurrences(of: "枚", with: "")
         return false
     }
 }

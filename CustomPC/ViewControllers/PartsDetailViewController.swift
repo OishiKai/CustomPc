@@ -98,7 +98,7 @@ class PartsDetailViewController: UIViewController{
                         }
                         
                         if (spec.contains("メモリ規格")){
-                            parts.specs.updateValue(spec, forKey: "memoryInterface")
+                            parts.specs.updateValue(spec, forKey: "memoryStandard")
                         }
                     }
                 }
@@ -111,6 +111,10 @@ class PartsDetailViewController: UIViewController{
                         
                         if (spec.contains("CPUソケット")){
                             parts.specs.updateValue(spec, forKey: "socket")
+                        }
+                        
+                        if (spec.contains("詳細メモリタイプ")){
+                            parts.specs.updateValue(spec, forKey: "memoryType")
                         }
                     }
                 }

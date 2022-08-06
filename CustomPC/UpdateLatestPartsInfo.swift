@@ -45,7 +45,7 @@ class UpdateLatestPartsInfo {
                     }
                     
                     if (spec.contains("メモリ規格")){
-                        pcParts[index].specs.updateValue(spec, forKey: "memoryInterface")
+                        pcParts[index].specs.updateValue(spec, forKey: "memoryStandard")
                     }
                 }
             }
@@ -58,6 +58,10 @@ class UpdateLatestPartsInfo {
                     
                     if spec.contains("CPUソケット") {
                         pcParts[index].specs.updateValue(spec, forKey: "socket")
+                    }
+                    
+                    if spec.contains("詳細メモリタイプ") {
+                        pcParts[index].specs.updateValue(spec, forKey: "memoryType")
                     }
                 }
             }
