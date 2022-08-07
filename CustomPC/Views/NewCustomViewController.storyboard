@@ -112,6 +112,7 @@
                         <outlet property="keepButton" destination="Q0M-dA-S9D" id="RAF-FA-Dgw"/>
                         <outlet property="priceLabel" destination="POg-7z-xhs" id="ZkX-96-NqJ"/>
                         <outlet property="selectTable" destination="04H-Xh-Rmw" id="rvY-xt-5KF"/>
+                        <outlet property="selectTableViewHeight" destination="ho2-Tw-mcc" id="HH0-VM-918"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="khK-vz-jZf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

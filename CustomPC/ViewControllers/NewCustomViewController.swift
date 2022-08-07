@@ -8,7 +8,7 @@ class NewCustomViewController: UIViewController,UITableViewDelegate, UITableView
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var compatibilityLabel: UILabel!
     @IBOutlet weak var keepButton: UIButton!
-    
+    @IBOutlet weak var selectTableViewHeight: NSLayoutConstraint!
     var cancelButton: UIBarButtonItem!
     var compatibilityMsg:String?
     var storedCustom : Custom? = nil
@@ -38,6 +38,12 @@ class NewCustomViewController: UIViewController,UITableViewDelegate, UITableView
         let nib = UINib(nibName: SearchPartsTableViewCell.cellIdentifier, bundle: nil)
         selectTable.register(nib, forCellReuseIdentifier: SearchPartsTableViewCell.cellIdentifier)
         selectTable.rowHeight = UITableView.automaticDimension
+        
+        let mainBoundSize = UIScreen.main.bounds.size.height
+        self.view.layoutIfNeeded()
+        if mainBoundSize < 812 {
+            self.selectTableViewHeight.constant = CGFloat(450)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
