@@ -10,6 +10,9 @@ import UIKit
 class CustomListViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource{
 
     @IBOutlet weak var customTable: UITableView!
+    @IBOutlet weak var desktopPcImage: UIImageView!
+    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var noStoredMessage: UILabel!
     var addBarButtonItem: UIBarButtonItem!
     
     var customs:[Custom]!
@@ -17,14 +20,20 @@ class CustomListViewController: UIViewController ,UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Customs"
+        self.backgroundView.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1.0)
         addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addBarButtonTapped(_:)))
         self.navigationItem.rightBarButtonItems = [addBarButtonItem]
         self.navigationItem.leftBarButtonItems = [editButtonItem]
         customs = AccessData.getCustoms()
-        
         let nib = UINib(nibName: SearchPartsTableViewCell.cellIdentifier, bundle: nil)
         customTable.register(nib, forCellReuseIdentifier: SearchPartsTableViewCell.cellIdentifier)
         customTable.rowHeight = UITableView.automaticDimension
+        
+        if customs.count == 0 {
+            customTable.isHidden = true
+            noStoredMessage.isHidden = true
+        }
+        desktopPcImage.image = UIImage(named: "desktopPc")!
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -32,19 +41,16 @@ class CustomListViewController: UIViewController ,UITableViewDelegate, UITableVi
         DispatchQueue.main.async {
             self.customTable.reloadData()
         }
+        
+        if customs.count != 0 {
+            customTable.isHidden = false
+            noStoredMessage.isHidden = false
+        }
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: true)
         customTable.isEditing = editing
-    }
-    
-    override var shouldAutorotate: Bool {
-        return false
-    }
-    
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -82,6 +88,10 @@ class CustomListViewController: UIViewController ,UITableViewDelegate, UITableVi
         customs.remove(at: indexPath.row)
         AccessData.deleteCustom(custom: cus)
         tableView.deleteRows(at: [indexPath], with: .automatic)
+        
+        if customs.count == 0 {
+            customTable.isHidden = true
+        }
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
