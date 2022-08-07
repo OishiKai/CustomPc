@@ -44,10 +44,10 @@ class ValidateCompatibility {
                 incompatibleMessage += "CPUとマザーボードのソケット形状"
             }
             
-            if (!validateTipset(cpu: cpu, motherBoard: motherBoard)) {
-                // チップセットが対応していない場合
-                incompatibleMessage += "CPUとマザーボードのチップセット"
-            }
+//            if (!validateTipset(cpu: cpu, motherBoard: motherBoard)) {
+//                // チップセットが対応していない場合
+//                incompatibleMessage += "CPUとマザーボードのチップセット"
+//            }
         }
         
         // cpuCooler mother
@@ -92,16 +92,10 @@ class ValidateCompatibility {
         return false
     }
     
-    private static func validateTipset(cpu:PcParts, motherBoard:PcParts) -> Bool {
-        guard let tipset = motherBoard.specs["tipset"] else { return false }
-        
-        if tipset.contains("INTEL") {
-        } else if tipset.contains("AMD") {
-            
-        }
-        
-        return false
-    }
+//    private static func validateTipset(cpu:PcParts, motherBoard:PcParts) -> Bool {
+//
+//        return false
+//    }
     
     private static func validateSocket(cpuCooler:PcParts, motherBoard:PcParts) -> Bool {
         var compatible = false

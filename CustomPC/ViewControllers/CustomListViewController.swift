@@ -39,6 +39,14 @@ class CustomListViewController: UIViewController ,UITableViewDelegate, UITableVi
         customTable.isEditing = editing
     }
     
+    override var shouldAutorotate: Bool {
+        return false
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return customs.count
     }

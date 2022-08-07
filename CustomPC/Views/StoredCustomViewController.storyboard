@@ -96,6 +96,7 @@
                     <navigationItem key="navigationItem" id="Rgg-hu-AwS"/>
                     <connections>
                         <outlet property="partsTable" destination="X9z-KX-mTF" id="02x-XF-85V"/>
+                        <outlet property="partsTableViewHeight" destination="3s0-je-6Qs" id="DE6-0B-Imu"/>
                         <outlet property="priceLabel" destination="akA-pm-ooN" id="UwM-b7-nSj"/>
                         <outlet property="updateButton" destination="y1A-z3-E1r" id="bY3-tz-Abd"/>
                     </connections>

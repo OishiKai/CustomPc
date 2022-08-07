@@ -22,16 +22,22 @@ class NewCustomViewController: UIViewController,UITableViewDelegate, UITableView
         self.navigationItem.leftBarButtonItem = cancelButton
         
         compatibilityLabel.textColor = .white
+        print(compatibilityMsg)
         if let message = compatibilityMsg {
-            compatibilityLabel.text = "選択されたパーツの互換性に問題があります\n" + message
-            compatibilityLabel.backgroundColor = .systemRed
+            
+            if message == "選択されたパーツの互換性に問題ありません" {
+                compatibilityLabel.text = message
+                compatibilityLabel.backgroundColor = .systemGreen
+            } else {
+                compatibilityLabel.text = "選択されたパーツの互換性に問題があります\n" + message
+                compatibilityLabel.backgroundColor = .systemRed
+            }
         } else {
             let msg = "選択されたパーツの互換性に問題ありません"
             self.compatibilityMsg = msg
             compatibilityLabel.text = msg
             compatibilityLabel.backgroundColor = .systemGreen
         }
-        
         keepButton.backgroundColor = UIColor.systemBlue
         keepButton.layer.cornerRadius = 10
         
