@@ -12,6 +12,7 @@ class StoredCustomViewController: UIViewController {
     @IBOutlet weak var partsTable: UITableView!
     @IBOutlet weak var updateButton: UIButton!
     @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var partsTableViewHeight: NSLayoutConstraint!
     var custom :Custom? = nil
     var customTitle = ""
     var customPrice = ""
@@ -34,6 +35,12 @@ class StoredCustomViewController: UIViewController {
         
         UpdateLatestPartsInfo.fetchPartsSpec(pcParts: sortedParts, index: 0) { pcParts in
             self.sortedParts = pcParts
+        }
+        
+        let mainBoundSize = UIScreen.main.bounds.size.height
+        self.view.layoutIfNeeded()
+        if mainBoundSize < 812 {
+            self.partsTableViewHeight.constant = CGFloat(470)
         }
     }
     

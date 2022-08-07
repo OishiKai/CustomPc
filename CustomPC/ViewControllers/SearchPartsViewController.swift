@@ -16,7 +16,7 @@ class SearchPartsViewController: UIViewController,UITableViewDelegate, UITableVi
     @IBOutlet weak var searchTable: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     var pcPartsSeq: [PcParts] = []
-    var selectedCategory:category = category.cpu
+    var selectedCategory:Category = Category.cpu
     var selectedParts:[PcParts] = []
     var storedCustom:Custom? = nil
 
@@ -59,8 +59,8 @@ class SearchPartsViewController: UIViewController,UITableViewDelegate, UITableVi
 
 extension SearchPartsViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        SVProgressHUD.show()
         guard !(searchBar.text?.isEmpty ?? true) else { return }
+        SVProgressHUD.show()
         searchBar.resignFirstResponder()
         let word = searchBar.text!
         SearchParts.searchPartsWithSearchBar(selectedCategory: selectedCategory, word: word) { parts in

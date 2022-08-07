@@ -12,7 +12,7 @@ import Kanna
 
 class SearchParts {
     // SearchPartsViewController遷移時(未検索時)の情報取得
-    static func searchParts(selectedCategory: category, searchURL:String, completionHandler: @escaping (Array<PcParts>) -> Void) {
+    static func searchParts(selectedCategory: Category, searchURL:String, completionHandler: @escaping (Array<PcParts>) -> Void) {
         print(searchURL)
         // alamofile encodingの引数にshiftJisを指定して文字化け回避
         AF.request(searchURL).responseString (encoding: String.Encoding.shiftJIS){ response in
@@ -101,7 +101,7 @@ class SearchParts {
     }
     
     // 検索バーの処理
-    static func searchPartsWithSearchBar(selectedCategory: category, word: String, completionHandler: @escaping (Array<PcParts>) -> Void) {
+    static func searchPartsWithSearchBar(selectedCategory: Category, word: String, completionHandler: @escaping (Array<PcParts>) -> Void) {
         // 検索ワードを "カテゴリ名+入力値" とする
         let addCategoryPhrase = selectedCategory.rawValue + " " + word
         let encoded = addCategoryPhrase.sjisPercentEncoded
@@ -113,7 +113,7 @@ class SearchParts {
     }
     
     // 選択されたカテゴリ(CPU,SSD等)と取得した商品のカテゴリ名の比較と照合する
-    static func exceptOtherCategory(category:category, goods:Array<Goods>) -> Array<PcParts> {
+    static func exceptOtherCategory(category:Category, goods:Array<Goods>) -> Array<PcParts> {
         var partsSeq = [PcParts]()
         for gds in goods {
             /*
