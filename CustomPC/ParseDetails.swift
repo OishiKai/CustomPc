@@ -89,33 +89,33 @@ class ParseDetails {
         }
     }
     
-    static func getPrices(detailUrl : String, completionHandler: @escaping ([String]) -> Void) -> Void{
-        AF.request("https://kakaku.com/item/K0001385125/?lid=pc_ksearch_kakakuitem").responseString (encoding: String.Encoding.shiftJIS) { response in
-            if let html = response.value {
-                if let doc = try? HTML(html: html, encoding: String.Encoding.utf8) {
-                    let makerXPath = "//*[@id='mainLeft']/table"
-                    var except: [String] = []
-                    if  var spec = doc.xpath(makerXPath).first?.text {
-                        spec = spec.replacingOccurrences(of: "\r\n\r\n\r\n", with: "?").replacingOccurrences(of: "\r\n", with: "?")
-                        let specs = spec.split(separator: "?")
-                        print(specs)
-                        var RankAndPrice :[String] = []
-                        for (offset, spec) in specs.enumerated(){
-                            if (spec.contains("位") && spec != "順位"){
-                                RankAndPrice.append(String(specs[offset]))
-                                RankAndPrice.append(String(specs[offset + 1]))
-                                
-                                var i = offset + 3
-                                while(!specs[i].contains(")")){
-                                    i += 1
-                                }
-                                RankAndPrice.append(String(specs[i - 1]))
-                            }
-                        }
-                        completionHandler(RankAndPrice)
-                    }
-                }
-            }
-        }
-    }
+//    static func getPrices(detailUrl : String, completionHandler: @escaping ([String]) -> Void) -> Void{
+//        AF.request("https://kakaku.com/item/K0001385125/?lid=pc_ksearch_kakakuitem").responseString (encoding: String.Encoding.shiftJIS) { response in
+//            if let html = response.value {
+//                if let doc = try? HTML(html: html, encoding: String.Encoding.utf8) {
+//                    let makerXPath = "//*[@id='mainLeft']/table"
+//                    var except: [String] = []
+//                    if  var spec = doc.xpath(makerXPath).first?.text {
+//                        spec = spec.replacingOccurrences(of: "\r\n\r\n\r\n", with: "?").replacingOccurrences(of: "\r\n", with: "?")
+//                        let specs = spec.split(separator: "?")
+//                        print(specs)
+//                        var RankAndPrice :[String] = []
+//                        for (offset, spec) in specs.enumerated(){
+//                            if (spec.contains("位") && spec != "順位"){
+//                                RankAndPrice.append(String(specs[offset]))
+//                                RankAndPrice.append(String(specs[offset + 1]))
+//                                
+//                                var i = offset + 3
+//                                while(!specs[i].contains(")")){
+//                                    i += 1
+//                                }
+//                                RankAndPrice.append(String(specs[i - 1]))
+//                            }
+//                        }
+//                        completionHandler(RankAndPrice)
+//                    }
+//                }
+//            }
+//        }
+//    }
 }

@@ -31,7 +31,7 @@ class CustomListViewController: UIViewController ,UITableViewDelegate, UITableVi
         
         if customs.count == 0 {
             customTable.isHidden = true
-            noStoredMessage.isHidden = true
+            noStoredMessage.isHidden = false
         }
         desktopPcImage.image = UIImage(named: "desktopPc")!
     }
@@ -44,7 +44,7 @@ class CustomListViewController: UIViewController ,UITableViewDelegate, UITableVi
         
         if customs.count != 0 {
             customTable.isHidden = false
-            noStoredMessage.isHidden = false
+            noStoredMessage.isHidden = true
         }
     }
     
@@ -91,6 +91,7 @@ class CustomListViewController: UIViewController ,UITableViewDelegate, UITableVi
         
         if customs.count == 0 {
             customTable.isHidden = true
+            noStoredMessage.isHidden = false
         }
     }
     
