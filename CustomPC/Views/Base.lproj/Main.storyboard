@@ -37,9 +37,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9i8-Xc-kOI">
-                                        <rect key="frame" x="0.0" y="-8" width="414" height="774"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9i8-Xc-kOI">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="customCell" id="BIu-7A-R2A">
@@ -58,11 +57,15 @@
                                     </tableView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="9i8-Xc-kOI" firstAttribute="top" secondItem="Lsa-VM-kkx" secondAttribute="top" id="0zM-3Y-9g8"/>
                                     <constraint firstItem="Dtt-jA-paG" firstAttribute="centerX" secondItem="Lsa-VM-kkx" secondAttribute="centerX" id="503-Gn-iCU"/>
                                     <constraint firstAttribute="trailing" secondItem="fAu-Bb-Cp2" secondAttribute="trailing" constant="94" id="LDF-tJ-0Bf"/>
                                     <constraint firstItem="fAu-Bb-Cp2" firstAttribute="top" secondItem="Lsa-VM-kkx" secondAttribute="top" constant="71" id="Of8-AJ-VU4"/>
                                     <constraint firstItem="fAu-Bb-Cp2" firstAttribute="leading" secondItem="Lsa-VM-kkx" secondAttribute="leading" constant="95" id="UCW-Np-Bpn"/>
+                                    <constraint firstAttribute="bottom" secondItem="9i8-Xc-kOI" secondAttribute="bottom" id="ZHc-cm-2Vj"/>
                                     <constraint firstItem="Dtt-jA-paG" firstAttribute="top" secondItem="fAu-Bb-Cp2" secondAttribute="bottom" constant="8" id="jT8-hY-tkv"/>
+                                    <constraint firstAttribute="trailing" secondItem="9i8-Xc-kOI" secondAttribute="trailing" id="pBu-sg-KFV"/>
+                                    <constraint firstItem="9i8-Xc-kOI" firstAttribute="leading" secondItem="Lsa-VM-kkx" secondAttribute="leading" id="suf-e4-VVP"/>
                                 </constraints>
                             </view>
                         </subviews>

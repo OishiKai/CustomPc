@@ -17,6 +17,8 @@
 		2A36E2882802953F0075C952 /* SearchPartsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A36E2872802953F0075C952 /* SearchPartsViewController.storyboard */; };
 		2A36E28A2802963C0075C952 /* SearchPartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A36E2892802963C0075C952 /* SearchPartsViewController.swift */; };
 		2A5784782892DF0A00C33B39 /* ValidateCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5784772892DF0A00C33B39 /* ValidateCompatibility.swift */; };
+		2A57847A289F86EB00C33B39 /* UnstoredCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A578479289F86EB00C33B39 /* UnstoredCategoryCell.xib */; };
+		2A57847C289F88BD00C33B39 /* UnstoredCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A57847B289F88BD00C33B39 /* UnstoredCategoryCell.swift */; };
 		2A6FA2162806814400B27677 /* PCParts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FA2152806814400B27677 /* PCParts.swift */; };
 		2A71B5CA2802B35A00F636E1 /* SearchParts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A71B5C92802B35A00F636E1 /* SearchParts.swift */; };
 		2A9C069827B6736200280671 /* NewCustomViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9C069727B6736200280671 /* NewCustomViewController.storyboard */; };
@@ -72,6 +74,8 @@
 		2A36E2872802953F0075C952 /* SearchPartsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchPartsViewController.storyboard; sourceTree = "<group>"; };
 		2A36E2892802963C0075C952 /* SearchPartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPartsViewController.swift; sourceTree = "<group>"; };
 		2A5784772892DF0A00C33B39 /* ValidateCompatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateCompatibility.swift; sourceTree = "<group>"; };
+		2A578479289F86EB00C33B39 /* UnstoredCategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnstoredCategoryCell.xib; sourceTree = "<group>"; };
+		2A57847B289F88BD00C33B39 /* UnstoredCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnstoredCategoryCell.swift; sourceTree = "<group>"; };
 		2A6FA2152806814400B27677 /* PCParts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCParts.swift; sourceTree = "<group>"; };
 		2A71B5C92802B35A00F636E1 /* SearchParts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchParts.swift; sourceTree = "<group>"; };
 		2A9C069727B6736200280671 /* NewCustomViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewCustomViewController.storyboard; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 				2A36E2872802953F0075C952 /* SearchPartsViewController.storyboard */,
 				2AE64C53287948930054E436 /* StoredCustomViewController.storyboard */,
 				2AFAE15C27B665D400D74495 /* LaunchScreen.storyboard */,
+				2A578479289F86EB00C33B39 /* UnstoredCategoryCell.xib */,
 				2AD853E42815A125000C9CF6 /* PartsDetailViewController.storyboard */,
 				2A041D54284AE81B002BCA77 /* PartsWebViewController.storyboard */,
 			);
@@ -162,6 +167,7 @@
 				2A2B766128092DCF00550054 /* SearchPartsTableViewCell.swift */,
 				2A9C069927B676C000280671 /* NewCustomViewController.swift */,
 				2A36E2892802963C0075C952 /* SearchPartsViewController.swift */,
+				2A57847B289F88BD00C33B39 /* UnstoredCategoryCell.swift */,
 				2AD853E6281651AE000C9CF6 /* PartsDetailViewController.swift */,
 				2A0DBACB28277FC200EA6477 /* PartsImageCollectionViewCell.swift */,
 			);
@@ -367,6 +373,7 @@
 				2A36E2882802953F0075C952 /* SearchPartsViewController.storyboard in Resources */,
 				2A9C069827B6736200280671 /* NewCustomViewController.storyboard in Resources */,
 				2AFAE15E27B665D400D74495 /* LaunchScreen.storyboard in Resources */,
+				2A57847A289F86EB00C33B39 /* UnstoredCategoryCell.xib in Resources */,
 				2A041D55284AE81B002BCA77 /* PartsWebViewController.storyboard in Resources */,
 				2AFAE15B27B665D400D74495 /* Assets.xcassets in Resources */,
 				2AE64C54287948930054E436 /* StoredCustomViewController.storyboard in Resources */,
@@ -501,6 +508,7 @@
 				2A2B766228092DCF00550054 /* SearchPartsTableViewCell.swift in Sources */,
 				2AFAE15327B665D300D74495 /* CustomListViewController.swift in Sources */,
 				2AD853E92818F646000C9CF6 /* ParseDetails.swift in Sources */,
+				2A57847C289F88BD00C33B39 /* UnstoredCategoryCell.swift in Sources */,
 				2AFAE14F27B665D300D74495 /* AppDelegate.swift in Sources */,
 				2A041D53284AE02A002BCA77 /* PartsWebViewController.swift in Sources */,
 				2A9C069A27B676C000280671 /* NewCustomViewController.swift in Sources */,

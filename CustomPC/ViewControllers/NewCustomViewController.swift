@@ -22,7 +22,6 @@ class NewCustomViewController: UIViewController,UITableViewDelegate, UITableView
         self.navigationItem.leftBarButtonItem = cancelButton
         
         compatibilityLabel.textColor = .white
-        print(compatibilityMsg)
         if let message = compatibilityMsg {
             
             if message == "選択されたパーツの互換性に問題ありません" {
@@ -41,8 +40,10 @@ class NewCustomViewController: UIViewController,UITableViewDelegate, UITableView
         keepButton.backgroundColor = UIColor.systemBlue
         keepButton.layer.cornerRadius = 10
         
-        let nib = UINib(nibName: SearchPartsTableViewCell.cellIdentifier, bundle: nil)
-        selectTable.register(nib, forCellReuseIdentifier: SearchPartsTableViewCell.cellIdentifier)
+        let unselectedNib = UINib(nibName: UnstoredCategoryCell.cellIdentifier, bundle: nil)
+        let selectedNib = UINib(nibName: SearchPartsTableViewCell.cellIdentifier, bundle: nil)
+        selectTable.register(selectedNib, forCellReuseIdentifier: SearchPartsTableViewCell.cellIdentifier)
+        selectTable.register(unselectedNib, forCellReuseIdentifier: UnstoredCategoryCell.cellIdentifier)
         selectTable.rowHeight = UITableView.automaticDimension
         
         let mainBoundSize = UIScreen.main.bounds.size.height
@@ -75,7 +76,7 @@ class NewCustomViewController: UIViewController,UITableViewDelegate, UITableView
             }
         }
         
-        let cancel = UIAlertAction(title: "キャンセル", style: .cancel) { (acrion) in
+        let cancel = UIAlertAction(title: "戻る", style: .cancel) { (acrion) in
             self.dismiss(animated: true, completion: nil)
         }
         alert.addAction(cancel)
@@ -139,7 +140,7 @@ class NewCustomViewController: UIViewController,UITableViewDelegate, UITableView
         self.present(
             alert,
             animated: true
-            )
+        )
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -163,9 +164,8 @@ class NewCustomViewController: UIViewController,UITableViewDelegate, UITableView
             cell.setup(parts: selectedParts!)
             return cell
         }else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "partsCell", for: indexPath)
-            cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
-            cell.textLabel?.text = parts[indexPath.row].rawValue
+            let cell = tableView.dequeueReusableCell(withIdentifier: UnstoredCategoryCell.cellIdentifier, for: indexPath) as! UnstoredCategoryCell
+            cell.setup(category: parts[indexPath.row])
             return cell
         }
     }
