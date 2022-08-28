@@ -41,7 +41,7 @@ class ValidateCompatibility {
         if let cpu = cpu {
             if (!validateSocket(cpu: cpu, motherBoard:motherBoard)) {
                 // ソケット形状が異なる場合
-                incompatibleMessage += "CPUとマザーボードのソケット形状"
+                incompatibleMessage += "CPUとマザーボードのソケット形状\n"
             }
             
 //            if (!validateTipset(cpu: cpu, motherBoard: motherBoard)) {
@@ -54,7 +54,7 @@ class ValidateCompatibility {
         if let cpuCooler = cpuCooler {
             if (!validateSocket(cpuCooler: cpuCooler, motherBoard: motherBoard)) {
                 // ソケット形状が異なる場合
-                incompatibleMessage += "CPUクーラーとマザーボードのソケット形状"
+                incompatibleMessage += "CPUクーラーとマザーボードのソケット形状\n"
             }
         }
         
@@ -62,18 +62,19 @@ class ValidateCompatibility {
         if let memory = memory {
             if (!validateSocket(memory: memory, motherBoard: motherBoard)) {
                 // 規格が異なる場合
-                incompatibleMessage += "メモリーとマザーボードの規格"
+                incompatibleMessage += "メモリーとマザーボードの規格\n"
             }
             
             if (!MemoryLessThanSlotsCapacity(memory: memory, motherBoard: motherBoard)) {
                 // メモリの枚数がスロット数を超えている場合
-                incompatibleMessage += "メモリーの枚数とマザーボードのスロットの数"
+                incompatibleMessage += "メモリーの枚数とマザーボードのスロットの数\n"
             }
         }
         
         if incompatibleMessage == "" {
             return nil
         } else {
+            incompatibleMessage.removeLast(1)
             return incompatibleMessage
         }
     }
