@@ -28,13 +28,13 @@ class PartsDetailViewController: UIViewController{
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-        contentsView.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1.0)
-        pageControl.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1.0)
+        contentsView.backgroundColor = UIColor.tertiarySystemGroupedBackground
+        pageControl.backgroundColor = UIColor.tertiarySystemGroupedBackground
         pageControl.pageIndicatorTintColor = UIColor.gray
         pageControl.currentPageIndicatorTintColor = UIColor.green
-        makerLabel.backgroundColor = UIColor.white
-        titleLabel.backgroundColor = UIColor.white
-        priceLabel.backgroundColor = UIColor.white
+        makerLabel.backgroundColor = UIColor.secondarySystemGroupedBackground
+        titleLabel.backgroundColor = UIColor.secondarySystemGroupedBackground
+        priceLabel.backgroundColor = UIColor.secondarySystemGroupedBackground
         specTableView.layer.borderColor = UIColor.darkGray.cgColor
         specTableView.layer.borderWidth = 1.0
         searchButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapSearch(_:)))
@@ -220,7 +220,7 @@ extension PartsDetailViewController: UITableViewDelegate, UITableViewDataSource{
             for specItem in specItems {
                 if (specItem == data){
                     cell.textLabel?.text = data
-                    cell.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1.0)
+                    cell.backgroundColor = UIColor.tertiarySystemGroupedBackground
                     return cell
                 }
                 

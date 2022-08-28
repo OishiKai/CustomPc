@@ -27,6 +27,7 @@
 		2AD853E52815A125000C9CF6 /* PartsDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD853E42815A125000C9CF6 /* PartsDetailViewController.storyboard */; };
 		2AD853E7281651AE000C9CF6 /* PartsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD853E6281651AE000C9CF6 /* PartsDetailViewController.swift */; };
 		2AD853E92818F646000C9CF6 /* ParseDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD853E82818F645000C9CF6 /* ParseDetails.swift */; };
+		2ADE25CE28BAF0B800C67592 /* CompatibilityMessagesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADE25CD28BAF0B800C67592 /* CompatibilityMessagesViewController.storyboard */; };
 		2AE64C54287948930054E436 /* StoredCustomViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AE64C53287948930054E436 /* StoredCustomViewController.storyboard */; };
 		2AE64C56287A94450054E436 /* StoredCustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE64C55287A94450054E436 /* StoredCustomViewController.swift */; };
 		2AFAB94E284CD6FA00ABAB6D /* CheckCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFAB94D284CD6FA00ABAB6D /* CheckCompatibility.swift */; };
@@ -84,6 +85,7 @@
 		2AD853E42815A125000C9CF6 /* PartsDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PartsDetailViewController.storyboard; sourceTree = "<group>"; };
 		2AD853E6281651AE000C9CF6 /* PartsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartsDetailViewController.swift; sourceTree = "<group>"; };
 		2AD853E82818F645000C9CF6 /* ParseDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseDetails.swift; sourceTree = "<group>"; };
+		2ADE25CD28BAF0B800C67592 /* CompatibilityMessagesViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CompatibilityMessagesViewController.storyboard; sourceTree = "<group>"; };
 		2AE64C53287948930054E436 /* StoredCustomViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StoredCustomViewController.storyboard; sourceTree = "<group>"; };
 		2AE64C55287A94450054E436 /* StoredCustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredCustomViewController.swift; sourceTree = "<group>"; };
 		2AFAB94D284CD6FA00ABAB6D /* CheckCompatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckCompatibility.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				2AFAE15427B665D300D74495 /* Main.storyboard */,
 				2A9C069727B6736200280671 /* NewCustomViewController.storyboard */,
 				2A2B765F280927B500550054 /* SearchPartsTableViewCell.xib */,
+				2ADE25CD28BAF0B800C67592 /* CompatibilityMessagesViewController.storyboard */,
 				2A36E2872802953F0075C952 /* SearchPartsViewController.storyboard */,
 				2AE64C53287948930054E436 /* StoredCustomViewController.storyboard */,
 				2AFAE15C27B665D400D74495 /* LaunchScreen.storyboard */,
@@ -172,6 +175,22 @@
 				2A0DBACB28277FC200EA6477 /* PartsImageCollectionViewCell.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		2ADE25CC28BAE9E400C67592 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				2A71B5C92802B35A00F636E1 /* SearchParts.swift */,
+				2AD853E2280FD963000C9CF6 /* ShiftJISEncode.swift */,
+				2A2DB36A2883254600E68783 /* UpdateLatestPartsInfo.swift */,
+				2A6FA2152806814400B27677 /* PCParts.swift */,
+				2AFAB94F285F698300ABAB6D /* AccessData.swift */,
+				2AD853E82818F645000C9CF6 /* ParseDetails.swift */,
+				2AFAB94D284CD6FA00ABAB6D /* CheckCompatibility.swift */,
+				2A5784772892DF0A00C33B39 /* ValidateCompatibility.swift */,
+			);
+			name = models;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		2AFAE14227B665D300D74495 = {
@@ -200,17 +219,10 @@
 			isa = PBXGroup;
 			children = (
 				2A71B5C52802A64200F636E1 /* ViewControllers */,
+				2ADE25CC28BAE9E400C67592 /* models */,
 				2A71B5C42802A61900F636E1 /* Views */,
 				2AFAE14E27B665D300D74495 /* AppDelegate.swift */,
 				2AFAE15027B665D300D74495 /* SceneDelegate.swift */,
-				2A71B5C92802B35A00F636E1 /* SearchParts.swift */,
-				2AD853E2280FD963000C9CF6 /* ShiftJISEncode.swift */,
-				2A2DB36A2883254600E68783 /* UpdateLatestPartsInfo.swift */,
-				2A6FA2152806814400B27677 /* PCParts.swift */,
-				2AFAB94F285F698300ABAB6D /* AccessData.swift */,
-				2AD853E82818F645000C9CF6 /* ParseDetails.swift */,
-				2AFAB94D284CD6FA00ABAB6D /* CheckCompatibility.swift */,
-				2A5784772892DF0A00C33B39 /* ValidateCompatibility.swift */,
 				2AFAE15A27B665D400D74495 /* Assets.xcassets */,
 				2AFAE15F27B665D400D74495 /* Info.plist */,
 				2AFAE15727B665D300D74495 /* CustomPC.xcdatamodeld */,
@@ -378,6 +390,7 @@
 				2AFAE15B27B665D400D74495 /* Assets.xcassets in Resources */,
 				2AE64C54287948930054E436 /* StoredCustomViewController.storyboard in Resources */,
 				2AFAE15627B665D300D74495 /* Main.storyboard in Resources */,
+				2ADE25CE28BAF0B800C67592 /* CompatibilityMessagesViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,7 +721,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = CustomPC;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appdeveloper.kai.custompc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -728,7 +741,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = CustomPC;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appdeveloper.kai.custompc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

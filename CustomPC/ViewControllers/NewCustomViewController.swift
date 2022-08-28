@@ -9,6 +9,7 @@ class NewCustomViewController: UIViewController,UITableViewDelegate, UITableView
     @IBOutlet weak var compatibilityLabel: UILabel!
     @IBOutlet weak var keepButton: UIButton!
     @IBOutlet weak var selectTableViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var compatibilityDetailButton: UIButton!
     var cancelButton: UIBarButtonItem!
     var compatibilityMsg:String?
     var storedCustom : Custom? = nil
@@ -27,15 +28,19 @@ class NewCustomViewController: UIViewController,UITableViewDelegate, UITableView
             if message == "選択されたパーツの互換性に問題ありません" {
                 compatibilityLabel.text = message
                 compatibilityLabel.backgroundColor = .systemGreen
+                compatibilityDetailButton.isEnabled = false
+                
             } else {
                 compatibilityLabel.text = "選択されたパーツの互換性に問題があります\n" + message
                 compatibilityLabel.backgroundColor = .systemRed
+                compatibilityDetailButton.isEnabled = true
             }
         } else {
             let msg = "選択されたパーツの互換性に問題ありません"
             self.compatibilityMsg = msg
             compatibilityLabel.text = msg
             compatibilityLabel.backgroundColor = .systemGreen
+            compatibilityDetailButton.isEnabled = false
         }
         keepButton.backgroundColor = UIColor.systemBlue
         keepButton.layer.cornerRadius = 10
@@ -51,6 +56,8 @@ class NewCustomViewController: UIViewController,UITableViewDelegate, UITableView
         if mainBoundSize < 812 {
             self.selectTableViewHeight.constant = CGFloat(450)
         }
+        
+        compatibilityDetailButton.setTitle("", for: .normal)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -82,6 +89,10 @@ class NewCustomViewController: UIViewController,UITableViewDelegate, UITableView
         alert.addAction(cancel)
         alert.addAction(ok)
         present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func showCompatibilityMessage(_ sender: Any) {
+        
     }
     
     @IBAction func didTapKeepButton(_ sender: Any) {
